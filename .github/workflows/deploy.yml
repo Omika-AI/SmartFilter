@@ -9,15 +9,14 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: prod
 
     steps:
       - name: SSH into Hetzner and deploy
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.HETZNER_HOST }}
-          username: ${{ secrets.HETZNER_SSH_USER }}
-          key: ${{ secrets.HETZNER_SSH_KEY }}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             # Clone if first deploy, otherwise pull
             if [ ! -d /root/SmartFilter/.git ]; then
