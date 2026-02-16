@@ -37,8 +37,8 @@ jobs:
             # Build the app (react-router build)
             npm run build
 
-            # Restart with PM2
-            pm2 restart smartfilter || pm2 start npm --name "smartfilter" -- run start
+            # Restart with PM2 (--update-env to pick up any .env changes)
+            pm2 restart smartfilter --update-env || pm2 start npm --name "smartfilter" -- run start
 
             # Persist PM2 process list
             pm2 save
