@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+/* KPI cards grid */
+.aif-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.aif-kpi-card {
+  background: #ffffff;
+  border: 1px solid #e3e3e3;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.aif-kpi-label {
+  font-size: 13px;
+  color: #616161;
+  font-weight: 500;
+}
+
+.aif-kpi-value {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+/* Recent queries table */
+.aif-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.aif-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 13px;
+  color: #616161;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.aif-table td {
+  padding: 12px 16px;
+  font-size: 14px;
+  border-bottom: 1px solid #f1f1f1;
+  vertical-align: middle;
+}
+
+.aif-table tbody tr:hover {
+  background: #f6f6f7;
+}
+
+/* Settings form */
+.aif-field-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.aif-section-header {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 16px 0;
+}
+
+.aif-helper-text {
+  font-size: 13px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+.aif-sticky-footer {
+  position: sticky;
+  bottom: 0;
+  background: #ffffff;
+  border-top: 1px solid #e3e3e3;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 16px;
+}

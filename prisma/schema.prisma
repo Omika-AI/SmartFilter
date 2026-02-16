@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:dev.sqlite"
+}
+
+model Session {
+  id            String    @id
+  shop          String
+  state         String
+  isOnline      Boolean   @default(false)
+  scope         String?
+  expires       DateTime?
+  accessToken   String
+  userId        BigInt?
+  firstName     String?
+  lastName      String?
+  email         String?
+  accountOwner  Boolean   @default(false)
+  locale        String?
+  collaborator  Boolean?  @default(false)
+  emailVerified Boolean?  @default(false)
+}
+
+model Shop {
+  id               String          @id @default(cuid())
+  domain           String          @unique
+  enabled          Boolean         @default(true)
+  queryCount       Int             @default(0)
+  productTypes     String          @default("[]")
+  vendors          String          @default("[]")
+  tags             String          @default("[]")
+  priceRange       String          @default("{}")
+  variantOptions   String          @default("[]")
+  taxonomySyncedAt DateTime?
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+  queries          AiFilterQuery[]
+}
+
+model AiFilterQuery {
+  id              String   @id @default(cuid())
+  shopId          String
+  shop            Shop     @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  userQuery       String
+  filtersReturned String?
+  productCount    Int      @default(0)
+  latencyMs       Int      @default(0)
+  createdAt       DateTime @default(now())
+
+  @@index([shopId, createdAt])
+}

@@ -1,0 +1,45 @@
+name: Deploy to Hetzner
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: prod
+
+    steps:
+      - name: SSH into Hetzner and deploy
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HETZNER_HOST }}
+          username: ${{ secrets.HETZNER_SSH_USER }}
+          key: ${{ secrets.HETZNER_SSH_KEY }}
+          script: |
+            # Clone if first deploy, otherwise pull
+            if [ ! -d /root/SmartFilter/.git ]; then
+              rm -rf /root/SmartFilter
+              git clone https://github.com/Omika-AI/SmartFilter.git /root/SmartFilter
+            fi
+            cd /root/SmartFilter
+            git pull origin main
+
+            # Install dependencies
+            npm ci
+
+            # Load env vars, run Prisma generate + migrate
+            set -a && source .env && set +a
+            npx prisma generate
+            npx prisma migrate deploy
+
+            # Build the app (react-router build)
+            npm run build
+
+            # Restart with PM2
+            pm2 restart smartfilter || pm2 start npm --name "smartfilter" -- run start
+
+            # Persist PM2 process list
+            pm2 save

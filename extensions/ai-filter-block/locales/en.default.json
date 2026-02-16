@@ -1,0 +1,14 @@
+{
+  "ai_filter": {
+    "button_label": "AI Filter",
+    "modal_title": "Find products with AI",
+    "placeholder": "Describe what you're looking for...",
+    "submit": "Search",
+    "loading": "Searching...",
+    "error_generic": "Something went wrong. Please try again.",
+    "error_rate_limit": "Too many requests. Please wait a moment.",
+    "error_empty": "Please enter a description of what you're looking for.",
+    "no_filters": "No matching filters found. Try a different description.",
+    "close": "Close"
+  }
+}

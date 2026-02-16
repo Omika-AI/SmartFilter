@@ -1,0 +1,9 @@
+node_modules
+.react-router
+build
+.env
+prisma/dev.sqlite
+prisma/dev.sqlite-journal
+.cache
+.shopify
+.playwright-mcp

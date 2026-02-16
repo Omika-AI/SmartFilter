@@ -1,0 +1,12 @@
+api_version = "2026-01"
+
+[[extensions]]
+uid = "7d1b9696-06f3-a39d-7f56-e725d7346234f9df0e7c"
+type = "theme"
+name = "AI Product Filter"
+handle = "ai-filter-block"
+
+  [[extensions.blocks]]
+  file = "blocks/ai-filter.liquid"
+  name = "AI Product Filter"
+  target = "body"

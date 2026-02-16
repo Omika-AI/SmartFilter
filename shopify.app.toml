@@ -1,0 +1,39 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "TO_BE_ASSIGNED"
+name = "AI Filter"
+application_url = "https://ai-filter.omika.ai"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+
+[webhooks]
+api_version = "2026-04"
+
+  [[webhooks.subscriptions]]
+  topics = ["app/uninstalled"]
+  uri = "/webhooks"
+
+  [[webhooks.subscriptions]]
+  topics = ["app/scopes_update"]
+  uri = "/webhooks"
+
+  [[webhooks.subscriptions]]
+  compliance_topics = ["customers/data_request", "customers/redact", "shop/redact"]
+  uri = "/webhooks"
+
+  [[webhooks.subscriptions]]
+  topics = ["products/create", "products/update", "products/delete"]
+  uri = "/webhooks"
+
+[access_scopes]
+scopes = "read_products"
+
+[auth]
+redirect_urls = ["https://ai-filter.omika.ai/auth/callback"]
+
+[app_proxy]
+url = "/api/proxy"
+subpath = "ai-filter"
+prefix = "apps"

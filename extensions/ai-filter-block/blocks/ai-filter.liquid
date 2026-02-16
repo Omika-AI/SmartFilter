@@ -1,0 +1,70 @@
+{% if block.settings.enable %}
+  <div
+    id="ai-filter-root"
+    data-collection-handle="{{ collection.handle }}"
+    data-collection-id="{{ collection.id }}"
+    data-proxy-path="/apps/ai-filter"
+    data-button-text="{{ block.settings.button_text }}"
+    data-placeholder="{{ block.settings.placeholder_text }}"
+    data-accent-color="{{ block.settings.accent_color }}"
+    data-button-text-color="{{ block.settings.button_text_color }}"
+    data-section-id="{{ block.settings.section_id }}"
+    data-grid-selector="{{ block.settings.grid_selector }}"
+    style="
+      --aif-accent: {{ block.settings.accent_color }};
+      --aif-btn-text: {{ block.settings.button_text_color }};
+    "
+  ></div>
+
+  {{ 'ai-filter.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'ai-filter.js' | asset_url }}" defer></script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "AI Product Filter",
+  "target": "body",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable",
+      "label": "Enable AI Filter",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "AI Filter"
+    },
+    {
+      "type": "text",
+      "id": "placeholder_text",
+      "label": "Input placeholder",
+      "default": "Describe what you're looking for..."
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#6366f1"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "section_id",
+      "label": "Product grid section ID (optional)"
+    },
+    {
+      "type": "text",
+      "id": "grid_selector",
+      "label": "Product grid CSS selector (optional)"
+    }
+  ]
+}
+{% endschema %}

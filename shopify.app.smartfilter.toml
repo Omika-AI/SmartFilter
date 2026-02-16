@@ -1,0 +1,35 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "7d79c3541992b6df704924e48fd6da7b"
+name = "SmartFilter"
+application_url = "https://smartfilter.omika.ai"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+
+[webhooks]
+api_version = "2026-04"
+
+  [[webhooks.subscriptions]]
+  topics = ["app/uninstalled"]
+  uri = "/webhooks"
+
+  [[webhooks.subscriptions]]
+  topics = ["app/scopes_update"]
+  uri = "/webhooks"
+
+  [[webhooks.subscriptions]]
+  compliance_topics = ["customers/data_request", "customers/redact", "shop/redact"]
+  uri = "/webhooks"
+
+[access_scopes]
+scopes = "read_products"
+
+[auth]
+redirect_urls = ["https://smartfilter.omika.ai/auth/callback"]
+
+[app_proxy]
+url = "/api/proxy"
+subpath = "ai-filter"
+prefix = "apps"
